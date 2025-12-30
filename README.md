@@ -18,6 +18,12 @@ CSV Data → Validation → Feature Engineering → Optimization → Training �
 - **Evaluation**: Proper scoring rules (RPS, Brier Score, Log Loss) with calibration analysis
 - **Prediction**: Match outcome probabilities with derived markets (BTTS, Totals)
 
+## Case Study
+
+For a complete analysis and detailed walkthrough of the methodology, statistical foundations, and real-world results, check out the full case study:
+
+**[Football Match Probability Prediction - Case Study](https://github.com/oscgonz19/football-probabilities-ml-poisson-case-study)**
+
 ## Quick Start
 
 ```bash
