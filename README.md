@@ -303,19 +303,6 @@ penaltyblog>=0.5  # For statistical models
 
 ## Extending the Demo
 
-### Adding New Models
-
-```python
-# In model_training.py, add to MODEL_CLASSES:
-from penaltyblog.models import NegativeBinomialGoalsModel
-
-MODEL_CLASSES = {
-    "poisson": PoissonGoalsModel,
-    "dixon_coles": DixonColesGoalModel,
-    "negative_binomial": NegativeBinomialGoalsModel,  # Add new model
-}
-```
-
 ### Adding Custom Metrics
 
 ```python
