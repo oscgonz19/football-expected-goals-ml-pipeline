@@ -127,11 +127,18 @@ def run_pipeline(data_path: str | Path | None = None, optimize: bool = True) -> 
         data_path: Path to CSV file (uses sample data if None).
         optimize: Whether to run hyperparameter optimization.
     """
-    from .data_loader import MatchDataLoader
-    from .feature_engineering import FeatureEngineer
-    from .model_training import ModelTrainer, OptimizationConfig, TrainingConfig
-    from .model_evaluation import ModelEvaluator
-    from .predict import MatchPredictor, format_prediction
+    try:
+        from .data_loader import MatchDataLoader
+        from .feature_engineering import FeatureEngineer
+        from .model_training import ModelTrainer, OptimizationConfig, TrainingConfig
+        from .model_evaluation import ModelEvaluator
+        from .predict import MatchPredictor, format_prediction
+    except ImportError:
+        from data_loader import MatchDataLoader
+        from feature_engineering import FeatureEngineer
+        from model_training import ModelTrainer, OptimizationConfig, TrainingConfig
+        from model_evaluation import ModelEvaluator
+        from predict import MatchPredictor, format_prediction
 
     print("=" * 60)
     print("GOAL PREDICTION PIPELINE DEMO")
@@ -282,12 +289,16 @@ def run_pipeline(data_path: str | Path | None = None, optimize: bool = True) -> 
 
     predictor = MatchPredictor(model, model_type="dixon_coles")
 
-    # Generate predictions for sample matchups
-    sample_matchups = [
-        ("team a", "team b"),
-        ("team c", "team d"),
-        ("team b", "team d"),
-    ]
+    # Generate predictions using actual teams from the model
+    available_teams = predictor.get_teams()
+    if len(available_teams) >= 4:
+        sample_matchups = [
+            (available_teams[0], available_teams[1]),
+            (available_teams[2], available_teams[3]),
+            (available_teams[1], available_teams[3]),
+        ]
+    else:
+        sample_matchups = [(available_teams[0], available_teams[1])]
 
     for home, away in sample_matchups:
         try:
@@ -304,13 +315,13 @@ def run_pipeline(data_path: str | Path | None = None, optimize: bool = True) -> 
     print("=" * 60)
     print(f"\nModel saved to: {model_path}")
     print("You can load and use this model for predictions:")
-    print("""
+    print(f"""
     from portfolio_demo import ModelTrainer, MatchPredictor
 
     trainer = ModelTrainer()
-    model, metadata = trainer.load("portfolio_demo/models/demo_model_v001.joblib")
+    model, metadata = trainer.load("{model_path}")
     predictor = MatchPredictor(model)
-    prediction = predictor.predict("team a", "team b")
+    prediction = predictor.predict("{available_teams[0]}", "{available_teams[1]}")
     """)
 
 
