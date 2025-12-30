@@ -1,5 +1,9 @@
 # Portfolio Demo: Goal Prediction Pipeline
 
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![Code style: ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://github.com/astral-sh/ruff)
+
 A simplified, educational implementation of a football match goal prediction system using statistical models (Poisson and Dixon-Coles). This demo showcases end-to-end machine learning pipeline development for sports analytics.
 
 ## Overview
