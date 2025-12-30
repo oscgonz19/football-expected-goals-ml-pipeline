@@ -32,28 +32,38 @@ git clone git@github.com:oscgonz19/football-expected-goals-ml-pipeline.git
 cd football-expected-goals-ml-pipeline
 pip install -r requirements.txt
 
-# Run the full demo pipeline
-python -m portfolio_demo.run_demo
+# Run with sample Eredivisie data (1,242 matches, 4 seasons)
+python run_demo.py --data data/eredivisie_sample.csv
 
-# Or with your own data
-python -m portfolio_demo.run_demo --data path/to/matches.csv
+# Or run with synthetic demo data
+python run_demo.py
 
 # Skip optimization for faster execution
-python -m portfolio_demo.run_demo --no-optimize
+python run_demo.py --no-optimize
 ```
+
+### Sample Data
+
+The repo includes real match data from the **Dutch Eredivisie** (2021-2025):
+- `data/eredivisie_sample.csv` - 1,242 matches across 4 seasons
+- 23 teams including Ajax, PSV, Feyenoord, etc.
 
 ## Directory Structure
 
 ```
-portfolio_demo/
+football-expected-goals-ml-pipeline/
+├── README.md                # This documentation
+├── LICENSE                  # MIT License
+├── requirements.txt         # Dependencies
+├── run_demo.py              # Complete pipeline script
+├── data/
+│   └── eredivisie_sample.csv  # Sample match data (Eredivisie 2021-2025)
 ├── __init__.py              # Package exports
 ├── data_loader.py           # CSV loading and validation
 ├── feature_engineering.py   # Feature computation utilities
 ├── model_training.py        # Model training and optimization
 ├── model_evaluation.py      # Scoring and evaluation metrics
 ├── predict.py               # Prediction and market extraction
-├── run_demo.py              # Complete pipeline script
-├── PORTFOLIO_DEMO_README.md # This documentation
 └── models/                  # Saved model artifacts (created on run)
 ```
 
