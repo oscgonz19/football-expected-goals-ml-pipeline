@@ -52,6 +52,33 @@ The repo includes real match data from the **Dutch Eredivisie** (2021-2025):
 - `data/eredivisie_sample.csv` - 1,242 matches across 4 seasons
 - 23 teams including Ajax, PSV, Feyenoord, etc.
 
+### Visualizations
+
+Generate analysis plots for storytelling and documentation:
+
+```python
+from visualizations import (
+    plot_goals_distribution,
+    plot_results_by_season,
+    plot_team_strength,
+    plot_match_prediction,
+    plot_probability_grid,
+    generate_all_plots,
+)
+
+# Generate all plots at once
+generate_all_plots(df, model, evaluator, output_dir="plots")
+```
+
+<p align="center">
+  <img src="plots/01_goals_distribution.png" width="45%" />
+  <img src="plots/03_team_strength.png" width="45%" />
+</p>
+<p align="center">
+  <img src="plots/05_match_prediction.png" width="45%" />
+  <img src="plots/06_probability_grid.png" width="45%" />
+</p>
+
 ## Directory Structure
 
 ```
@@ -62,12 +89,19 @@ football-expected-goals-ml-pipeline/
 ├── run_demo.py              # Complete pipeline script
 ├── data/
 │   └── eredivisie_sample.csv  # Sample match data (Eredivisie 2021-2025)
+├── plots/                   # Generated visualizations
+│   ├── 01_goals_distribution.png
+│   ├── 02_results_by_season.png
+│   ├── 03_team_strength.png
+│   ├── 05_match_prediction.png
+│   └── 06_probability_grid.png
 ├── __init__.py              # Package exports
 ├── data_loader.py           # CSV loading and validation
 ├── feature_engineering.py   # Feature computation utilities
 ├── model_training.py        # Model training and optimization
 ├── model_evaluation.py      # Scoring and evaluation metrics
 ├── predict.py               # Prediction and market extraction
+├── visualizations.py        # Plotting functions for analysis
 └── models/                  # Saved model artifacts (created on run)
 ```
 
