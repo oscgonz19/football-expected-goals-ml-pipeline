@@ -362,7 +362,10 @@ class ModelTrainer:
 
         Returns list of scores (one per test match).
         """
-        from .model_evaluation import compute_rps, compute_brier
+        try:
+            from .model_evaluation import compute_rps, compute_brier
+        except ImportError:
+            from model_evaluation import compute_rps, compute_brier
 
         metric_fn = compute_rps if metric == "rps" else compute_brier
         scores = []
