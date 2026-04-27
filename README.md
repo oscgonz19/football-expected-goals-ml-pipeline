@@ -328,7 +328,6 @@ seaborn>=0.12
 ## References
 
 - Dixon, M. J., & Coles, S. G. (1997). *Modelling Association Football Scores and Inefficiencies in the Football Betting Market*. Journal of the Royal Statistical Society.
-- [penaltyblog](https://github.com/martineastwood/penaltyblog) - Python library for football analytics
 
 ---
 
